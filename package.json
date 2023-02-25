@@ -2,21 +2,21 @@
   "name": "filmoteka",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://dominikdanielewicz.github.io/goit-javascript-project-g4",
+  "homepage": "https://github.com/pawelrogowski/Filmoteka",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-javascript-project-g4/",
+    "build": "parcel build src/*.html --public-url /Filmoteka/",
     "clear-cache": "rm -rf .parcel-cache"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominikdanielewicz/goit-javascript-project-g4.git"
+    "url": "git+https://github.com/pawelrogowski/Filmoteka.git"
   },
   "keywords": [],
   "author": "GoIT Student Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dominikdanielewicz/goit-javascript-project-g4/issues"
+    "url": "https://github.com/pawelrogowski/Filmoteka/issues"
   },
   "dependencies": {
     "lodash": "^4.17.21",
