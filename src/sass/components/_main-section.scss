@@ -1,8 +1,0 @@
-.main-section {
-  min-width: calc($mobile - 40px);
-  padding-top: 60px;
-  padding-bottom: 50px;
-  background: $background-color-primary;
-  @include flexbox(column, nowrap, flex-start, center);
-  min-height: calc(100vh - (230px + 81px)); // viewport height - (header height + footer height)
-}
