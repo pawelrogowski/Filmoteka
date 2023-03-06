@@ -1,4 +1,4 @@
-import { APIKEY, setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
+import { API_KEY, API_URL setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
 
 import { showSpinner, hideSpinner, showSpinnerModal } from './spinner';
 import { createButtons } from './pagination';
@@ -14,10 +14,10 @@ const paginationBox = document.querySelector('.pagination');
 export async function fetchMovieById(id) {
   showSpinnerModal();
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
     const data = await response.json();
 
-    const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${APIKEY}`);
+    const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
     const creditsData = await creditsResponse.json();
     const genres = data.genres;
 
@@ -31,10 +31,10 @@ export async function fetchMovieById(id) {
 export async function fetchTrending(page) {
   showSpinner();
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${APIKEY}&page=${page}`);
+    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}`);
     const data = await response.json();
 
-    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${APIKEY}`);
+    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
     const genresData = await genresResponse.json();
     const genres = genresData.genres;
 
@@ -65,12 +65,12 @@ export async function fetchQuery(query, page) {
     showSpinner();
     // Fetch data from api
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&query=${query}&page=${page}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`
     );
     const data = await response.json();
 
     // Fetch genres for the movie
-    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${APIKEY}`);
+    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
     const genresData = await genresResponse.json();
     const genres = genresData.genres;
 

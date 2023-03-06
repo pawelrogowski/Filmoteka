@@ -1,4 +1,5 @@
-export const APIKEY = 'cd99a2449e6daaffb205ea92bac682a0'; // API key used to make requests to the movie database
+export const API_URL = 'https://api.themoviedb.org/3/';
+export const API_KEY = 'cd99a2449e6daaffb205ea92bac682a0'; // API key used to make requests to the movie database
 
 export let PAGE = 1; // Current page number
 
