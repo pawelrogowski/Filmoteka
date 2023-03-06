@@ -1,7 +1,7 @@
 import { API_KEY, API_URL, setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
 
 import { showSpinner, hideSpinner, showSpinnerModal } from './spinner';
-import { createButtons } from './pagination';
+import { createButtons as createPaginationButtons } from './pagination';
 import { createGallery } from './create-gallery';
 import { Notify } from 'notiflix';
 
@@ -51,7 +51,7 @@ export async function fetchTrending(page) {
     const totalResults = data.total_results;
     const totalPages = Math.ceil(totalResults / 20); // 20 results per page
     setTotalPages(totalPages);
-    createButtons(TOTAL_PAGES, PAGE);
+    createPaginationButtons(TOTAL_PAGES, PAGE);
     hideSpinner();
     return results;
   } catch (error) {
@@ -60,21 +60,16 @@ export async function fetchTrending(page) {
   }
 }
 
-// Fetch movie data based on query and page number
-// Return an array of objects with movie data based on a query
 export async function fetchQuery(query, page) {
   try {
     showSpinner();
-    // Fetch data from api
     const response = await fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`);
     const data = await response.json();
 
-    // Fetch genres for the movie
     const genresResponse = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
     const genresData = await genresResponse.json();
     const genres = genresData.genres;
 
-    // Map the results array with genre names
     const results = data.results.map(movie => {
       const movieGenres = movie.genre_ids.map(genreId => {
         const genre = genres.find(g => g.id === genreId);
@@ -82,8 +77,7 @@ export async function fetchQuery(query, page) {
       });
       return { ...movie, genre_ids: movieGenres };
     });
-
-    // Set totalResults variable
+    console.log(data);
     const totalResults = data.total_results;
     if (totalResults < 1) {
       Notify.failure(`Sorry, there are no movies matching your search`, {
@@ -94,19 +88,15 @@ export async function fetchQuery(query, page) {
       });
     }
 
-    // Calculate totalPages for pagination
-    const totalPages = Math.ceil(totalResults / 20); // 20 results per page
+    const totalPages = data.total_pages; // 20 results per page
 
-    // Set page and totalPages variables
     setPage(page);
     setTotalPages(totalPages);
     setLastQuery(query);
-    createButtons(TOTAL_PAGES, PAGE);
+    createPaginationButtons(TOTAL_PAGES, PAGE);
 
-    // Hide loading spinner
     hideSpinner();
 
-    // Return the final result
     return results;
   } catch (error) {
     hideSpinner();
