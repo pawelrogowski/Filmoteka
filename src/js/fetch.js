@@ -30,12 +30,13 @@ export async function fetchMovieById(id) {
 }
 
 export async function fetchTrending(page) {
+  const apiTarget = '/trending/';
   showSpinner();
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&page=${page}`);
+    const response = await fetch(`${API_URL}${apiTarget}movie/week?api_key=${API_KEY}&page=${page}`);
     const data = await response.json();
 
-    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
+    const genresResponse = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
     const genresData = await genresResponse.json();
     const genres = genresData.genres;
 
