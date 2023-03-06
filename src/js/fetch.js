@@ -66,13 +66,11 @@ export async function fetchQuery(query, page) {
   try {
     showSpinner();
     // Fetch data from api
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`
-    );
+    const response = await fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`);
     const data = await response.json();
 
     // Fetch genres for the movie
-    const genresResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
+    const genresResponse = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
     const genresData = await genresResponse.json();
     const genres = genresData.genres;
 
