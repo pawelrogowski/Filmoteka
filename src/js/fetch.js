@@ -1,22 +1,16 @@
-import {
-  APIKEY,
-  setPage,
-  setTotalPages,
-  setLastQuery,
-  TOTAL_PAGES,
-  PAGE,
-} from './globals';
+import { APIKEY, setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
 
 import { showSpinner, hideSpinner, showSpinnerModal } from './spinner';
 import { createButtons } from './pagination';
 import { createGallery } from './create-gallery';
 import { Notify } from 'notiflix';
 
+const paginationBox = document.querySelector('.pagination');
+
 // Call API by movie ID and get a response with details
 // Return an object with details - genres are already resolved
 // ID parameter must be a string
 
-const paginationBox = document.querySelector('.pagination');
 export async function fetchMovieById(id) {
   showSpinnerModal();
   try {
