@@ -1,4 +1,4 @@
-import { API_KEY, API_URL setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
+import { API_KEY, API_URL, setPage, setTotalPages, setLastQuery, TOTAL_PAGES, PAGE } from './globals';
 
 import { showSpinner, hideSpinner, showSpinnerModal } from './spinner';
 import { createButtons } from './pagination';
@@ -12,12 +12,13 @@ const paginationBox = document.querySelector('.pagination');
 // ID parameter must be a string
 
 export async function fetchMovieById(id) {
+  const apiTarget = '/movie/';
   showSpinnerModal();
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
+    const response = await fetch(`${API_URL}${apiTarget}${id}?api_key=${API_KEY}`);
     const data = await response.json();
 
-    const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
+    const creditsResponse = await fetch(`${API_URL}${apiTarget}${id}/credits?api_key=${API_KEY}`);
     const creditsData = await creditsResponse.json();
     const genres = data.genres;
 
